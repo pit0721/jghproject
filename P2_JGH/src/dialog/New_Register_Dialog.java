@@ -18,7 +18,7 @@ import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.dataUtil;
 
-public class New_Register_Dialog extends Dialog {	
+public class New_Register_Dialog extends Dialog {	 //Dialog í´ë˜ìŠ¤ì—ì„œ ìƒì†ë°›ì€ ë“±ë¡ ë‹¤ì´ì–´ë¡œê·¸ í´ë˜ìŠ¤
 
 	protected Object result;
 	protected Shell shell;
@@ -45,13 +45,13 @@ public class New_Register_Dialog extends Dialog {
 	 * @param parent
 	 * @param style
 	 */
-	public New_Register_Dialog(Shell parent, int style) {
-		super(parent, style);
+	public New_Register_Dialog(Shell parent, int style) {  //ìƒì„±ì ì´ˆê¸°í™”
+		super(parent, style); //ë¶€ëª¨í´ë˜ìŠ¤ì˜ Dialogì—ì„œ ë¶ˆëŸ¬ì˜´
 		setText("SWT Dialog");
 		dialog_kind = 0;
 	}
 	
-	public New_Register_Dialog(Shell parent, int style, String id, String password, String name, String phone, String email) {
+	public New_Register_Dialog(Shell parent, int style, String id, String password, String name, String phone, String email) {  //ê°™ì€ í•¨ìˆ˜ì—ì„œ ë‹¤ë¥¸ ê°’ë“¤ì˜ ì‚¬ìš©ì„ ìœ„í•´ ì˜¤ë²„ë¼ì´ë”©
 		super(parent, style);
 		setText("SWT Dialog");
 		_id = id;
@@ -99,7 +99,7 @@ public class New_Register_Dialog extends Dialog {
 	private void createContents() {
 		shell = new Shell(getParent(), SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 		shell.setSize(346, 230);
-		shell.setText("\uD68C\uC6D0\uAC00\uC785");
+		shell.setText("íšŒì›ê°€ì…");
 		shell.setLayout(new FillLayout(SWT.HORIZONTAL));
 		
 		Composite composite = new Composite(shell, SWT.BORDER);
@@ -108,7 +108,7 @@ public class New_Register_Dialog extends Dialog {
 		CLabel lblNewLabel = new CLabel(composite, SWT.NONE);
 		lblNewLabel.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblNewLabel.setBounds(10, 12, 62, 21);
-		lblNewLabel.setText("\uC544\uC774\uB514");
+		lblNewLabel.setText("ì•„ì´ë””");
 		
 		txt_id = new Text(composite, SWT.BORDER | SWT.CENTER);
 		txt_id.setBounds(78, 12, 164, 21);
@@ -197,13 +197,13 @@ public class New_Register_Dialog extends Dialog {
 				case 0 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Failure!");
-					messageBox.setMessage("Á¤º¸ ¼öÁ¤ ½ÇÆĞ");
+					messageBox.setMessage("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					messageBox.open();
 					break;
 				case 1 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Success!");
-					messageBox.setMessage("Á¤º¸ ¼öÁ¤ ¼º°ø");
+					messageBox.setMessage("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					messageBox.open();
 					shell.close();
 					break;
@@ -223,7 +223,7 @@ public class New_Register_Dialog extends Dialog {
 			{
 				messageBox = new MessageBox(shell, SWT.OPEN);
 				messageBox.setText("Notify!");
-				messageBox.setMessage("¾ÆÀÌµğ Áßº¹Ã¼Å©¸¦ ÇØÁÖ¼¼¿ä");
+				messageBox.setMessage("ï¿½ï¿½ï¿½Ìµï¿½ ï¿½ßºï¿½Ã¼Å©ï¿½ï¿½ ï¿½ï¿½ï¿½Ö¼ï¿½ï¿½ï¿½");
 				messageBox.open();
 				return;
 			}
@@ -233,13 +233,13 @@ public class New_Register_Dialog extends Dialog {
 				case 0 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Failure!");
-					messageBox.setMessage("»õ·Î¿î °èÁ¤ µî·Ï ½ÇÆĞ");
+					messageBox.setMessage("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					messageBox.open();
 					break;
 				case 1 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Success!");
-					messageBox.setMessage("»õ·Î¿î °èÁ¤ µî·Ï ¼º°ø");
+					messageBox.setMessage("ï¿½ï¿½ï¿½Î¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					messageBox.open();
 					shell.close();
 					break;
@@ -260,19 +260,19 @@ public class New_Register_Dialog extends Dialog {
 				case -1 :	
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Error!");
-					messageBox.setMessage("½Ã½ºÅÛ ¿À·ù");
+					messageBox.setMessage("ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
 					messageBox.open();
 					break;
 				case 0 : 
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Error!");
-					messageBox.setMessage("»ç¿ë ºÒ°¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
+					messageBox.setMessage("ï¿½ï¿½ï¿½ ï¿½Ò°ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½.");
 					messageBox.open();
 					break;
 				case 1 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Error!");
-					messageBox.setMessage("»ç¿ë °¡´ÉÇÑ ¾ÆÀÌµğ ÀÔ´Ï´Ù.");
+					messageBox.setMessage("ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ìµï¿½ ï¿½Ô´Ï´ï¿½.");
 					messageBox.open();
 					isIdCheck = true;
 					break;

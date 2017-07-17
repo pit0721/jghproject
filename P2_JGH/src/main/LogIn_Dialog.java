@@ -48,9 +48,9 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 		shlLogin.open();
 		shlLogin.layout();
 		Display display = getParent().getDisplay();
-		while (!shlLogin.isDisposed()) {
+		while (!shlLogin.isDisposed()) {  //이벤트 루프 시작
 			if (!display.readAndDispatch()) {
-				display.sleep();
+				display.sleep(); ////이벤트가 없으면 잠시 멈춘다
 			}
 		}
 		return result;
