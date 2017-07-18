@@ -34,7 +34,7 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 	 * @param parent
 	 * @param style
 	 */
-	public LogIn_Dialog(Shell parent, int style) {
+	public LogIn_Dialog(Shell parent, int style) {  //생성자
 		super(parent, style); //부모클래스의 Dialog에서 불러옴
 		setText("SWT Dialog");
 	}
