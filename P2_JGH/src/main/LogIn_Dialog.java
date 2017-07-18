@@ -71,13 +71,13 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 		CLabel lblNewLabel = new CLabel(composite, SWT.NONE);
 		lblNewLabel.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		lblNewLabel.setBounds(10, 10, 62, 21);
-		lblNewLabel.setText("\uC544\uC774\uB514");
+		lblNewLabel.setText("아이디");
 		
 		txt_id = new Text(composite, SWT.BORDER | SWT.CENTER);
 		txt_id.setBounds(78, 10, 194, 21);
 		
 		CLabel label = new CLabel(composite, SWT.NONE);
-		label.setText("\uBE44\uBC00\uBC88\uD638");
+		label.setText("비밀번호");
 		label.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		label.setBounds(10, 37, 62, 21);
 		
@@ -92,7 +92,7 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 			}
 		});
 		btn_login.setBounds(276, 10, 66, 48);
-		btn_login.setText("\uB85C\uADF8\uC778");
+		btn_login.setText("로그인");
 		
 		btn_register = new Button(composite, SWT.NONE);
 		btn_register.addSelectionListener(new SelectionAdapter() {
@@ -102,12 +102,12 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 			}
 		});
 		btn_register.setBounds(276, 64, 66, 25);
-		btn_register.setText("\uD68C\uC6D0\uAC00\uC785");
+		btn_register.setText("회원가입");
 		
 		btn_logout = new Button(composite, SWT.NONE);
 		btn_logout.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(SelectionEvent e) { //widgetSelected 오버라이딩. 변수값들 반영
 				txt_id.setEnabled(true);
 				txt_id.setText("");
 				txt_password.setEnabled(true);
@@ -119,23 +119,23 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 			}
 		});
 		btn_logout.setBounds(10, 64, 76, 25);
-		btn_logout.setText("\uB85C\uADF8\uC544\uC6C3");
+		btn_logout.setText("로그아웃");
 		btn_logout.setVisible(false);
 		
 		btn_modify = new Button(composite, SWT.NONE);
 		btn_modify.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(SelectionEvent e) {  //widgetSelected 오버라이딩. popUpForModify() 함수 반영
 				popUpForModify();
 			}
 		});
 		btn_modify.setVisible(false);
-		btn_modify.setText("\uC815\uBCF4\uC218\uC815");
+		btn_modify.setText("수정");
 		btn_modify.setBounds(88, 64, 76, 25);
 
 	}
 	
-	protected void popUpForModify() {
+	protected void popUpForModify() {  //해당 패키지에서만 사용하기 때문에 protected로 선언
 		// TODO Auto-generated method stub
 		try {
 			account account = dataUtil.command.getCurrentAccout();
@@ -169,19 +169,19 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 				case -1:
 					messageBox = new MessageBox(shlLogin, SWT.OPEN);
 					messageBox.setText("Error!");
-					messageBox.setMessage("�ý��� ����");
+					messageBox.setMessage("로그인 실패");
 					messageBox.open();
 					break;
 				case 0:
 					messageBox = new MessageBox(shlLogin, SWT.OPEN);
 					messageBox.setText("Error");
-					messageBox.setMessage("���̵� Ȯ���� �ּ���");
+					messageBox.setMessage("로그인 실패");
 					messageBox.open();
 					break;
 				case 1:
 					messageBox = new MessageBox(shlLogin, SWT.OPEN);
 					messageBox.setText("Success");
-					messageBox.setMessage("�α��� ����");
+					messageBox.setMessage("로그인 성공");
 					messageBox.open();					
 					
 					// �α��� ��Ȳ ǥ��
@@ -195,7 +195,7 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 				case 2:
 					messageBox = new MessageBox(shlLogin, SWT.OPEN);
 					messageBox.setText("Error");
-					messageBox.setMessage("��й�ȣ�� Ȯ���� �ּ���");
+					messageBox.setMessage("로그인 실패");
 					messageBox.open();
 					break;
 			}			

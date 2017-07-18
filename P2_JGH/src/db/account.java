@@ -11,18 +11,19 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "dbo.account", catalog = "ACCOUNT")
-public class account implements Serializable {
+public class account implements Serializable {  //인터페이스 Serializable를 구현하는 클래스 생성. 직렬화 사용.
+												//직렬화:객체를 전송 가능한 형태로 만드는 것
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public account() {
+	public account() { //생성자 초기화 . 초기화하는 이유는 인스턴스 변수가 여러 개 있으면 각각 접근해서 값을 넣어줘야 하기 때문. 아무것도 없이 생성하면 디폴트 생성자(클래스는 생성자가 반드시 있어야하므로)
 
 	}
 
-	private int NO;
+	private int NO;       //캡슐화를 위해 private 선언
 	private String ID;
 	private String PASSWORD;
 	private String USER_NAME;
@@ -33,7 +34,7 @@ public class account implements Serializable {
 	
 	@Id @GeneratedValue
 	@Column(name = "NO")
-	public int getNO() {
+	public int getNO() {    //메소드를 외부에서 접근하게 하기 위해 getter, setter 사용
 		return NO;
 	}
 	public void setNO(int nO) {

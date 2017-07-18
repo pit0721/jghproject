@@ -125,10 +125,10 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 			}
 		});
 		btn_duplication.setBounds(248, 10, 76, 25);
-		btn_duplication.setText("\uC911\uBCF5\uCCB4\uD06C");
+		btn_duplication.setText("중복체크");
 		
 		CLabel label = new CLabel(composite, SWT.NONE);
-		label.setText("\uBE44\uBC00\uBC88\uD638");
+		label.setText("비밀번호");
 		label.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		label.setBounds(10, 39, 62, 21);
 		
@@ -136,7 +136,7 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 		txt_password.setBounds(78, 39, 164, 21);
 		
 		CLabel label_1 = new CLabel(composite, SWT.NONE);
-		label_1.setText("\uC774\uB984");
+		label_1.setText("이름");
 		label_1.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		label_1.setBounds(10, 66, 62, 21);
 		
@@ -144,7 +144,7 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 		txt_name.setBounds(78, 66, 164, 21);
 		
 		CLabel label_2 = new CLabel(composite, SWT.NONE);
-		label_2.setText("\uC5F0\uB77D\uCC98");
+		label_2.setText("연락처");
 		label_2.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		label_2.setBounds(10, 93, 62, 21);
 		
@@ -152,7 +152,7 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 		txt_phone.setBounds(78, 93, 164, 21);
 		
 		CLabel label_3 = new CLabel(composite, SWT.NONE);
-		label_3.setText("\uC774\uBA54\uC77C");
+		label_3.setText("이메일");
 		label_3.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 		label_3.setBounds(10, 120, 62, 21);
 		
@@ -162,24 +162,24 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 		btn_cancel = new Button(composite, SWT.NONE);
 		btn_cancel.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(SelectionEvent e) {  //widgetSelected 오버라이딩. shell 끄는 close() 함수 반영
 				shell.close();
 			}
 		});
 		btn_cancel.setBounds(254, 165, 76, 25);
-		btn_cancel.setText("\uCDE8\uC18C");
+		btn_cancel.setText("취소");
 		
 		btn_ok = new Button(composite, SWT.NONE);
 		btn_ok.addSelectionListener(new SelectionAdapter() {
 			@Override
-			public void widgetSelected(SelectionEvent e) {
+			public void widgetSelected(SelectionEvent e) {  //widgetSelected 오버라이딩. 
 				if(dialog_kind == 0)
 					saveNewRegister();
 				else
 					modiftRegister();
 			}
 		});
-		btn_ok.setText("\uD655\uC778");
+		btn_ok.setText("확인");
 		btn_ok.setBounds(172, 165, 76, 25);
 		
 		Label label_4 = new Label(composite, SWT.SEPARATOR | SWT.HORIZONTAL);
@@ -187,7 +187,7 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 		composite.setTabList(new Control[]{txt_id, btn_duplication, txt_password, txt_name, txt_phone, txt_email, btn_ok, lblNewLabel, label_3, label, label_2, btn_cancel, label_1});
 	}
 
-	protected void modiftRegister() {
+	protected void modiftRegister() {  //등록수정 함수
 		// TODO Auto-generated method stub
 		MessageBox messageBox = null;
 		try {
@@ -197,13 +197,13 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 				case 0 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Failure!");
-					messageBox.setMessage("���� ���� ����");
+					messageBox.setMessage("실패");
 					messageBox.open();
 					break;
 				case 1 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Success!");
-					messageBox.setMessage("���� ���� ����");
+					messageBox.setMessage("성공");
 					messageBox.open();
 					shell.close();
 					break;
@@ -233,13 +233,13 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 				case 0 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Failure!");
-					messageBox.setMessage("���ο� ���� ��� ����");
+					messageBox.setMessage("실패");
 					messageBox.open();
 					break;
 				case 1 :
 					messageBox = new MessageBox(shell, SWT.OPEN);
 					messageBox.setText("Success!");
-					messageBox.setMessage("���ο� ���� ��� ����");
+					messageBox.setMessage("성공");
 					messageBox.open();
 					shell.close();
 					break;

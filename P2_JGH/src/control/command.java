@@ -12,9 +12,9 @@ import db.account;
 
 public class command {
 	
-	public account currentAccout;
+	public account currentAccout; //account 클래스의 currentAccout 변수 선언
 	
-	public account getCurrentAccout() {
+	public account getCurrentAccout() {  
 		return this.currentAccout;
 	}
 
@@ -23,21 +23,23 @@ public class command {
 	}
 
 	@SuppressWarnings("finally")
-	public int checkLogin(String id, String password)
+	public int checkLogin(String id, String password) 
 	{
-		Session session = null;
-		Transaction tx = null;
+		Session session = null; //Session:어플리케이션과 JDBC 사이의 단일쓰레드
+		Transaction tx = null;  //Transaction: 어플리케이션에 의해 사용되는 단일 쓰레드
 		int returnVal = 0;
 		try {
 			session = HibernateSessionFactory.getSession();			
-			account account = (account)session.createCriteria(account.class).add(Restrictions.eq("ID", id)).uniqueResult();
+			account account = (account)session.createCriteria(account.class).add(Restrictions.eq("ID", id)).uniqueResult(); //account 클래스로 형변환. 
+								//session.createCriteria()메소드를 사용해 기본 검색 조건을 갖는 Criteria 인스턴스 생성. 메소드 인자로 매핑 설정파일에서 명시한 자바 클래스가 옴.
+								//org.hibernate.Criteria인터페이스는 특정 영속 클래스에 대한 질의를 표현.Restrictions 클래스는 어떤 미리 만들어진 Criterion 타입들을 얻는 팩토리 메소드들을 정의
 			session.close();
 			
-			if(account == null)
+			if(account == null) 
 				returnVal = 0;
 			else
 			{
-				if(account.getPASSWORD().equals(password))
+				if(account.getPASSWORD().equals(password)) //계정의 입력된 패스워드가 같다면
 				{
 					session = HibernateSessionFactory.getSession();
 					tx = session.beginTransaction();
