@@ -34,7 +34,7 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 	 * @param parent
 	 * @param style
 	 */
-	public LogIn_Dialog(Shell parent, int style) {  //생성자
+	public LogIn_Dialog(Shell parent, int style) {
 		super(parent, style); //부모클래스의 Dialog에서 불러옴
 		setText("SWT Dialog");
 	}
@@ -85,7 +85,8 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 		txt_password.setBounds(78, 37, 194, 21);
 		
 		btn_login = new Button(composite, SWT.NONE);
-		btn_login.addSelectionListener(new SelectionAdapter() {
+		btn_login.addSelectionListener(new SelectionAdapter() {  //addSelectionListener: 선택이벤트의 리스너를 가능하게 한다. 
+																 //SelectionAdapter(): 이 리스너와 상응하는 Adapter
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				checkLogin();
@@ -163,10 +164,10 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 		// TODO Auto-generated method stub
 		MessageBox messageBox = null;
 		try {
-			int returnVal = dataUtil.command.checkLogin(txt_id.getText(), txt_password.getText());
+			int returnVal = dataUtil.command.checkLogin(txt_id.getText(), txt_password.getText());  //id값,pw값
 			switch(returnVal)
-			{
-				case -1:
+			{ 
+				case -1:      //dataUtil의 command클래스의 checkLogin함수의 returnVal 값.
 					messageBox = new MessageBox(shlLogin, SWT.OPEN);
 					messageBox.setText("Error!");
 					messageBox.setMessage("로그인 실패");
@@ -184,13 +185,13 @@ public class LogIn_Dialog extends Dialog {  //Dialog에서 상속받음
 					messageBox.setMessage("로그인 성공");
 					messageBox.open();					
 					
-					// �α��� ��Ȳ ǥ��
-					txt_id.setEnabled(false);
+					
+					txt_id.setEnabled(false);  //활성화를 안함
 					txt_password.setEnabled(false);
 					btn_login.setEnabled(false);
 					btn_register.setEnabled(false);
-					btn_logout.setVisible(true);
-					btn_modify.setVisible(true);
+					btn_logout.setVisible(true);  //보이게 함
+					btn_modify.setVisible(true); 
 					break;
 				case 2:
 					messageBox = new MessageBox(shlLogin, SWT.OPEN);

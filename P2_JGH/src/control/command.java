@@ -71,18 +71,18 @@ public class command {
 	}
 	
 	@SuppressWarnings({ "finally", "unchecked" })
-	public int checkDuplicationId(String id, int kind) //증복체크 함수
+	public int checkDuplicationId(String id, int kind)
 	{
 		Session session = null;
 		int returnVal = 1;
 		try {
 			session = HibernateSessionFactory.getSession();
-			List<account> account = session.createCriteria(account.class).add(Restrictions.eq("ID", id)).list(); //account로 구성된 List에 저장
+			List<account> account = session.createCriteria(account.class).add(Restrictions.eq("ID", id)).list();
 			session.close();
 				
 			if(kind == 0)
 			{
-				for(account acc : account)  //account 배열을 acc배열에 저장
+				for(account acc : account)
 				{
 					if(acc.getID().equals(id))
 					{
@@ -116,7 +116,7 @@ public class command {
 	}
 	
 	@SuppressWarnings("finally")
-	public int saveNewRegister(String id, String password, String name, String phone, String email)//회원등록 함수
+	public int saveNewRegister(String id, String password, String name, String phone, String email)
 	{
 		Session session = null;
 		Transaction tx = null;
@@ -149,7 +149,7 @@ public class command {
 	}
 	
 	@SuppressWarnings("finally")
-	public int modifyRegister(String id, String password, String name, String phone, String email)  //수정등록 함수
+	public int modifyRegister(String id, String password, String name, String phone, String email)
 	{
 		Session session = null;
 		Transaction tx = null;

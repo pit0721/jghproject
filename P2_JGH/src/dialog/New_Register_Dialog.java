@@ -45,7 +45,7 @@ public class New_Register_Dialog extends Dialog {	 //Dialog 클래스에서 상�
 	 * @param parent
 	 * @param style
 	 */
-	public New_Register_Dialog(Shell parent, int style) {  //생성자 
+	public New_Register_Dialog(Shell parent, int style) {  //생성자 초기화
 		super(parent, style); //부모클래스의 Dialog에서 불러옴
 		setText("SWT Dialog");
 		dialog_kind = 0;
