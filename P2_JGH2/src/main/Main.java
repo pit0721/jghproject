@@ -14,7 +14,7 @@ public class Main {
 		Display display = new Display();  //GUI 작업을 위한 Display 객체를 생성
 		Shell shell = new Shell(display);  //할당 초기화
 		shell.setSize(399, 233);
-		LoginDialog dialog = new LoginDialog(shell, SWT.OPEN);
+		RegistorDialog dialog = new RegistorDialog(shell, SWT.OPEN);
 		dialog.open();
 		
 	}
