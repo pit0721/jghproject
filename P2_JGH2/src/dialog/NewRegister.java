@@ -1,18 +1,18 @@
 package dialog;
 
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 import control.DataUtil;
 
@@ -40,11 +40,14 @@ public class NewRegister extends Dialog {
 	private String _regDate;
 	private String _owner;
 	private Text text;
+	private Button btn_duplication;
+	private Button btn_confirm;
+	private Button btn_cancle;
 	
 	public NewRegister(Shell parent, int style) {
 		super(parent, style);
 		setText("SWT Dialog");
-		dialog_kind = 0;
+		dialog_kind = 0;  //정보 입력안된 다이어로그
 	}
 	
 	public NewRegister(Shell parent, int style, String no, String title, String writer, String genre, String issueDate, String regDate, String owner){
@@ -57,7 +60,7 @@ public class NewRegister extends Dialog {
 		_issueDate=issueDate;
 		_regDate=regDate;
 		_owner=owner;
-		dialog_kind=1;
+		dialog_kind=1; //정보 입력된 다이어로그
 		
 	}
 	
@@ -77,10 +80,10 @@ public class NewRegister extends Dialog {
 		
 	}
 
-	private void init() {
+	private void init() {  //값들 설정
 		txt_no.setText(_no);
 		txt_title.setText(_title);
-		//btn_duplication.setEnabled(false);
+		btn_duplication.setEnabled(false);
 		txt_genre.setText(_genre);
 		txt_issueDate.setText(_issueDate);
 		txt_regDate.setText(_regDate);
@@ -150,6 +153,20 @@ public class NewRegister extends Dialog {
 		btn_confirm.setBounds(258, 283, 76, 25);
 		btn_confirm.setText("확인");
 		
+		btn_confirm.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				// TODO Auto-generated method stub
+				super.widgetSelected(e);
+				if(dialog_kind==0)  //정보 입력 안되어있으면
+					saveNewRegister();
+				else
+					modifyRegister();
+			}
+				
+		});
+		
 		Button btn_cancle = new Button(composite, SWT.NONE);
 		btn_cancle.setText("취소");
 		btn_cancle.setBounds(346, 283, 76, 25);
@@ -159,7 +176,7 @@ public class NewRegister extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if(dialog_kind==0)
-					check_duplication_No(0);
+					check_duplication_No(0); //중복의 경우
 				else
 					check_duplication_No(1);
 			}
@@ -171,6 +188,70 @@ public class NewRegister extends Dialog {
 		text.setBounds(87, 10, 239, 21);
 		
 		
+	}
+
+	protected void modifyRegister() {
+		// TODO Auto-generated method stub
+		MessageBox messageBox = null;
+		try {
+			
+			switch(DataUtil.command.modifyRegister(txt_no.getText(), txt_title.getText(), txt_genre.getText(),txt_writer.getText()))
+			{						
+				case 0 :
+					messageBox = new MessageBox(shell, SWT.OPEN);
+					messageBox.setText("Failure!");
+					messageBox.setMessage("실패");
+					messageBox.open();
+					break;
+				case 1 :
+					messageBox = new MessageBox(shell, SWT.OPEN);
+					messageBox.setText("Success!");
+					messageBox.setMessage("성공");
+					messageBox.open();
+					shell.close();
+					break;
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+	}
+
+	protected void saveNewRegister() {
+		// TODO Auto-generated method stub
+		MessageBox messageBox = null;		
+		try {
+				
+				if(!isNoCheck)
+				{
+					messageBox = new MessageBox(shell, SWT.OPEN);
+					messageBox.setText("Notify!");
+					messageBox.setMessage("이미 있는 번호다");
+					messageBox.open();
+					return;
+				}
+				
+				switch(DataUtil.command.saveNewRegister(txt_no.getText(), txt_title.getText(), txt_genre.getText(),txt_writer.getText()))
+				{
+					case 0 :
+						messageBox = new MessageBox(shell, SWT.OPEN);
+						messageBox.setText("Failure!");
+						messageBox.setMessage("실패");
+						messageBox.open();
+						break;
+					case 1 :
+						messageBox = new MessageBox(shell, SWT.OPEN);
+						messageBox.setText("Success!");
+						messageBox.setMessage("성공");
+						messageBox.open();
+						shell.close();
+						break;
+				}
+			
+			}catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+			}
 	}
 
 	protected void check_duplication_No(int kind) {

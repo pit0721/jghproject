@@ -1,25 +1,23 @@
 package main;
 
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.FillLayout;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Dialog;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.Text;
-import org.eclipse.wb.swt.SWTResourceManager;
-import org.eclipse.swt.widgets.Combo;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.swt.widgets.Text;
+import org.eclipse.wb.swt.SWTResourceManager;
 
+import db.Book;
 import dialog.NewRegister;
 
 public class SearchDialog extends Dialog {  //Dialog에서 상속받음
@@ -27,13 +25,17 @@ public class SearchDialog extends Dialog {  //Dialog에서 상속받음
 	protected Object result;
 	protected Shell shlSearch;
 	protected Shell shell;
-	private Text txt_name;
-	private Text text_birth;
-	private Text txt_phone;
-	private Text txt_home;
-	private Text btn_sex;
 	private Text txt_search;
 	private Table tbl_list;
+	
+	private ArrayList<Book> book=new ArrayList<Book>();
+	
+	public ArrayList<Book> getBook() {
+		return book;
+	}
+	public void setBook(ArrayList<Book> book) {
+		this.book = book;
+	}
 	
 	/**
 	 * Create the dialog.
@@ -148,7 +150,7 @@ public class SearchDialog extends Dialog {  //Dialog에서 상속받음
 	}
 	
 	protected void bookList() {
-		
+		tbl_list.setVisible(true);
 	}
 	
 	protected void popUp(){  //등록할 때 새창 띄우기
@@ -159,7 +161,19 @@ public class SearchDialog extends Dialog {  //Dialog에서 상속받음
 			// TODO: handle exception
 			e.printStackTrace();
 		}
+		updateTable();
 	}
+	
+	
+	private void updateTable() {
+		// TODO Auto-generated method stub
+		tbl_list.removeAll();
+		for(Book b : book){
+			TableItem item = new TableItem(tbl_list, SWT.INSERT);
+			item.setText(new String[]{((Object) b).getNo(), String.valueOf(b.getTITLE()), b.getGenre(),((Object) b).getWriter(), b.getPhone(),b.getEmail()});
+		}
+	}
+	
 	
 	
 }
