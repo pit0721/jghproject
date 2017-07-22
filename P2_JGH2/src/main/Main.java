@@ -6,9 +6,7 @@ import org.eclipse.swt.widgets.Shell;
 
 import control.Command;
 import control.DataUtil;
-
-
-
+import dialog.SearchDialog;
 
 public class Main {
 

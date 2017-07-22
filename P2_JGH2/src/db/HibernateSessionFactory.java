@@ -3,25 +3,39 @@ package db;
 import java.util.Calendar;
 
 import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.classic.Session;
 
-public class HibernateSessionFactory {
-	
-	private static String CONFIG_FILE_LOCATION="/db/hibernate.cfg.xml";
-	private static final ThreadLocal<Session> threadLocal=new ThreadLocal<Session>();
-	private static AnnotationConfiguration configuration =new AnnotationConfiguration();
-	private static org.hibernate.SessionFactory sessionFactory;
+/**
+ * Configures and provides access to Hibernate sessions, tied to the
+ * current thread of execution.  Follows the Thread Local Session
+ * pattern, see {@link http://hibernate.org/42.html }.
+ */
+public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 팩토리 클래스
+
+    /** 
+     * Location of hibernate.cfg.xml file.
+     * Location should be on the classpath as Hibernate uses  
+     * #resourceAsStream style lookup for its configuration file. 
+     * The default classpath location of the hibernate config file is 
+     * in the default package. Use #setConfigFile() to update 
+     * the location of the configuration file for the current session.   
+     */
+    private static String CONFIG_FILE_LOCATION = "/db/hibernate.cfg.xml";
+	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+    private  static AnnotationConfiguration configuration = new AnnotationConfiguration();
+    private static org.hibernate.SessionFactory sessionFactory;
     private static String configFile = CONFIG_FILE_LOCATION;
-    private static Calendar Regdate;
+    private static String UserName;
+    private static Calendar Startdate;
     
 	public static Calendar  getStartdate() {
-		return Regdate;
+		return Startdate;
 	}
 
 	public static void setStartdate(Calendar startdate) {
-		Regdate = startdate;
+		Startdate = startdate;
 	}
 
 	static {
@@ -35,6 +49,13 @@ public class HibernateSessionFactory {
 			e.printStackTrace();
 		}
     }
+    public static String getUserName() {
+		return UserName;
+	}
+
+	public static void setUserName(String userName) {		
+		UserName = userName;
+	}
 
 	private HibernateSessionFactory() {
     }
