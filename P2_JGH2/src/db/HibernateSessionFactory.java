@@ -22,23 +22,23 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
      * in the default package. Use #setConfigFile() to update 
      * the location of the configuration file for the current session.   
      */
-    private static String CONFIG_FILE_LOCATION = "/db/hibernate.cfg.xml";
-	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
-    private  static AnnotationConfiguration configuration = new AnnotationConfiguration();
-    private static org.hibernate.SessionFactory sessionFactory;
-    private static String configFile = CONFIG_FILE_LOCATION;
-    private static String UserName;
-    private static Calendar Startdate;
+    private static  String CONFIG_FILE_LOCATION = "/db/hibernate.cfg.xml";
+	private  final static ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+    private static   AnnotationConfiguration configuration = new AnnotationConfiguration(); //어노테이션 설정
+    private static  org.hibernate.SessionFactory sessionFactory;
+    private static  String configFile = CONFIG_FILE_LOCATION;
+    private  String UserName;
+    private  Calendar Startdate;
     
-	public static Calendar  getStartdate() {
+	public  Calendar  getStartdate() {
 		return Startdate;
 	}
 
-	public static void setStartdate(Calendar startdate) {
+	public  void setStartdate(Calendar startdate) {
 		Startdate = startdate;
 	}
 
-	static {
+	 {
     	try {
     		
 			configuration.configure(configFile);
@@ -49,11 +49,11 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
 			e.printStackTrace();
 		}
     }
-    public static String getUserName() {
+    public  String getUserName() {
 		return UserName;
 	}
 
-	public static void setUserName(String userName) {		
+	public  void setUserName(String userName) {		
 		UserName = userName;
 	}
 
@@ -67,7 +67,7 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
      *  @return Session
      *  @throws HibernateException
      */
-    public static Session getSession() throws HibernateException {
+    public static  Session getSession() throws HibernateException {
         Session session = (Session) threadLocal.get();
 
 		if (session == null || !session.isOpen()) {
@@ -102,7 +102,7 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
      *
      *  @throws HibernateException
      */
-    public static void closeSession() throws HibernateException {
+    public  void closeSession() throws HibernateException {
         Session session = (Session) threadLocal.get();
         threadLocal.set(null);
 
@@ -115,7 +115,7 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
      *  return session factory
      *
      */
-	public static org.hibernate.SessionFactory getSessionFactory() {
+	public  org.hibernate.SessionFactory getSessionFactory() {
 		return sessionFactory;
 	}
 
@@ -124,7 +124,7 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
      *
      *	session factory will be rebuilded in the next call
      */
-	public static void setConfigFile(String configFile) {
+	public  void setConfigFile(String configFile) {
 		HibernateSessionFactory.configFile = configFile;
 		sessionFactory = null;
 	}
@@ -133,8 +133,9 @@ public class HibernateSessionFactory {  //Session 인스턴스를 생성하는 �
      *  return hibernate configuration
      *
      */
-	public static Configuration getConfiguration() {
+	public  Configuration getConfiguration() {
 		return configuration;
 	}
+	
 
 }

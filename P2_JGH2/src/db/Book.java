@@ -15,8 +15,8 @@ public class Book implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-
+	@SuppressWarnings("unused")
+	private  final long serialVersionUID = 1L;
 
 	private int NO;
 	private String TITLE;
@@ -95,5 +95,7 @@ public class Book implements Serializable{
 	public void setREG_DATE(Date rEG_DATE) {
 		REG_DATE = rEG_DATE;
 	}
+
+	
 	
 }
